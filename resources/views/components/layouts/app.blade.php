@@ -47,9 +47,10 @@
                 @endif
 
                 <x-menu-item title="Hello" icon="o-sparkles" link="/" />
-                <x-menu-sub title="Settings" icon="o-cog-6-tooth">
-                    <x-menu-item title="Wifi" icon="o-wifi" link="####" />
-                    <x-menu-item title="Archives" icon="o-archive-box" link="####" />
+                <x-menu-item title="Users" icon="o-user" link="/users" />
+                <x-menu-sub title="Company" icon="o-home-modern">
+                    <x-menu-item title="List" icon="o-document" link="/companies" />
+                    <x-menu-item title="Create" icon="o-plus" link="/companies/create" />
                 </x-menu-sub>
             </x-menu>
         </x-slot:sidebar>

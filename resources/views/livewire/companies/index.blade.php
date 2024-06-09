@@ -3,7 +3,7 @@
 use Illuminate\Support\Collection;
 use Livewire\Volt\Component;
 use Mary\Traits\Toast;
-
+use Domain\Apply\Models\Company;
 
 new class extends Component {
     use Toast;
@@ -12,7 +12,7 @@ new class extends Component {
 
     public bool $drawer = false;
 
-    public array $sortBy = ['column' => 'name', 'direction' => 'asc'];
+    public array $sortBy = ['column' => 'id', 'direction' => 'asc'];
 
     // Clear filters
     public function clear(): void
@@ -32,9 +32,8 @@ new class extends Component {
     {
         return [
             ['key' => 'id', 'label' => '#', 'class' => 'w-1'],
-            ['key' => 'name', 'label' => 'Name', 'class' => 'w-64'],
-            ['key' => 'age', 'label' => 'Age', 'class' => 'w-20'],
-            ['key' => 'email', 'label' => 'E-mail', 'sortable' => false],
+            ['key' => 'name', 'label' => 'Name', 'class' => 'w-20'],
+            ['key' => 'address', 'label' => 'Address', 'class' => 'w-20'],
         ];
     }
 
@@ -46,7 +45,7 @@ new class extends Component {
      */
     public function companies(): Collection
     {
-        $companies = \Domain\Apply\Models\Company::all()->toArray();
+        $companies = Company::all()->toArray();
         return collect($companies)
             ->sortBy([[...array_values($this->sortBy)]])
             ->when($this->search, function (Collection $collection) {
@@ -71,6 +70,9 @@ new class extends Component {
         </x-slot:middle>
         <x-slot:actions>
             <x-button label="Filters" @click="$wire.drawer = true" responsive icon="o-funnel" />
+        </x-slot:actions>
+        <x-slot:actions>
+            <x-button label="Create" class="btn-primary" link="/companies/create" wire:navigate responsive icon="o-plus" />
         </x-slot:actions>
     </x-header>
 
