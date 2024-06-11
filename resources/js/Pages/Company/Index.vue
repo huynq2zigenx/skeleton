@@ -2,12 +2,12 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import {Head, Link} from "@inertiajs/vue3";
 
-defineProps({ model: Object })
+defineProps({model: Object})
 
 </script>
 
 <template>
-    <Head title="Companies" />
+    <Head title="Companies"/>
 
     <AuthenticatedLayout>
         <template #header>
@@ -16,7 +16,9 @@ defineProps({ model: Object })
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <Link href="/companies/create" method="get" as="button" type="button" class="btn btn-primary mb-2">Create</Link>
+                <Link as="button" class="btn btn-primary mb-2" href="/companies/create" method="get" type="button">
+                    Create
+                </Link>
 
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="overflow-x-auto">
@@ -26,17 +28,21 @@ defineProps({ model: Object })
                             <tr>
                                 <th></th>
                                 <th>Name</th>
-                                <th>address</th>
-                                <th>owner</th>
+                                <th>Address</th>
+                                <th>Owner</th>
+                                <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
                             <!-- row 1 -->
                             <tr v-for="company in model.companies.data">
-                                <th>{{company.id}}</th>
-                                <td>{{company.name}}</td>
-                                <td>{{company.address}}</td>
-                                <td>{{company.user.name}}</td>
+                                <th>{{ company.id }}</th>
+                                <td>{{ company.name }}</td>
+                                <td>{{ company.address }}</td>
+                                <td>{{ company.user.name }}</td>
+                                <td>
+                                    <Link :href="`/companies/${company.id}/edit`" class="btn btn-primary">Edit</Link>
+                                </td>
                             </tr>
 
                             </tbody>
