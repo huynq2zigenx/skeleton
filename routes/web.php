@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Apply\CompanyController;
+use App\Http\Controllers\Apply\EntryApplyController;
 use App\Http\Controllers\Apply\EntryController;
+use App\Http\Controllers\Apply\HomeController;
 use App\Http\Controllers\Apply\RecruitController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -29,5 +31,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/entry/{recruit}', [EntryApplyController::class, 'index'])->name('entry.index');
+Route::post('/entry', [EntryApplyController::class, 'store'])->name('entry.store');
 
 require __DIR__.'/auth.php';

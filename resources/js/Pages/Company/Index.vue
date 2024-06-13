@@ -2,7 +2,6 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import {Head, Link} from "@inertiajs/vue3";
 import Pagination from "@/Components/Pagination.vue";
-import DangerButton from "@/Components/DangerButton.vue";
 
 const { model } = defineProps({ model: Object })
 
@@ -22,7 +21,7 @@ function getTotalPage() {
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 				<div class="flex justify-between">
-					<Pagination :total="getTotalPage()" :path="model.companies.path" :curentPage="model.companies.current_page"></Pagination>
+					<Pagination :total="getTotalPage()" :model="model.companies"></Pagination>
 					<Link href="/companies/create" method="get" as="button" type="button" class="btn btn-primary mb-2">Create</Link>
 				</div>
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -35,7 +34,7 @@ function getTotalPage() {
                                 <th>Name</th>
                                 <th>Address</th>
                                 <th>Owner</th>
-                                <th>Action</th>
+                                <th colspan="2" class="text-center">Action</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -45,9 +44,8 @@ function getTotalPage() {
                                 <td>{{ company.name }}</td>
                                 <td>{{ company.address }}</td>
                                 <td>{{ company.user.name }}</td>
-                                <td>
-                                    <Link :href="`/companies/${company.id}/edit`" class="btn btn-primary">Edit</Link>
-                                </td>
+                                <td class="text-center"><Link :href="`/companies/${company.id}/edit`" class="btn btn-warning">Edit</Link></td>
+								<td class="text-center"><Link :href="`${model.companies.path}/${company.id}`" class="btn btn-info">show</Link></td>
                             </tr>
 
                             </tbody>

@@ -22,7 +22,7 @@ function getTotalPage() {
           <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 				<div class="flex justify-between">
-					<Pagination :total="getTotalPage()" :path="model.recruits.path" :curentPage="model.recruits.current_page"></Pagination>
+					<Pagination :total="getTotalPage()" :model="model.recruits"></Pagination>
 					<Link href="/recruits/create" method="get" as="button" type="button" class="btn btn-primary mb-2">Create</Link>
 				</div>
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -37,7 +37,7 @@ function getTotalPage() {
                                 <th>Company</th>
                                 <th>Start date</th>
                                 <th>End date</th>
-								<th colspan="2"></th>
+								<th colspan="2" class="text-center">Actions</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -49,8 +49,8 @@ function getTotalPage() {
                                 <td>{{recruit.company.name}}</td>
                                 <td>{{recruit.start_date}}</td>
                                 <td>{{recruit.end_date}}</td>
-								<td><Link :href="`${model.recruits.path}/${recruit.id}/edit`" method="get" as="button" type="button" class="btn mb-2">edit</Link></td>
-								<td><a :href="`${model.recruits.path}/${recruit.id}/show`">delete</a></td>
+								<td class="text-center"><Link :href="`${model.recruits.path}/${recruit.id}/edit`" class="btn btn-warning">Edit</Link></td>
+								<td class="text-center"><Link :href="`${model.recruits.path}/${recruit.id}`" class="btn btn-info">show</Link></td>
                             </tr>
                             </tbody>
                         </table>

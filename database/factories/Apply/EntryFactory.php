@@ -2,8 +2,8 @@
 
 namespace Database\Factories\Apply;
 
-use Domain\Apply\Models\Company;
 use Domain\Apply\Models\Entry;
+use Domain\Apply\Models\Recruit;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**

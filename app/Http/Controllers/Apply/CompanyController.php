@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Apply;
 
+use Domain\Apply\Actions\Company\DeleteCompanyAction;
 use Domain\Apply\Actions\Company\UpsertCompanyAction;
 use Domain\Apply\DataTransferObjects\CompanyData;
 use Domain\Apply\Models\Company;
@@ -57,4 +58,19 @@ class CompanyController
 
     }
 
+	public function show(Company $company): Response
+    {
+        return Inertia::render('Company/Show', [
+            'model' => new UpsertCompanyViewModel($company)
+        ]);
+    }
+
+	public function destroy(Company $company): RedirectResponse
+    {
+        DeleteCompanyAction::execute(
+			CompanyData::fromModel($company)
+		);
+
+		return Redirect::route('companies.index');
+    }
 }

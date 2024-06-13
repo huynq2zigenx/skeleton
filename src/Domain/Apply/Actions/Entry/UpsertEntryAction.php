@@ -8,7 +8,7 @@ use Domain\Apply\Models\Entry;
 
 class UpsertEntryAction
 {
-    public static function execute(EntryData $data, Company $company): Entry
+    public static function execute(EntryData $data): Entry
     {
         $entry = Entry::updateOrCreate(
             [
@@ -16,7 +16,7 @@ class UpsertEntryAction
             ],
             [
                 ...$data->all(),
-                'company_id' => $company->id,
+                'company_id' => $data->company->id,
             ]
         );
 

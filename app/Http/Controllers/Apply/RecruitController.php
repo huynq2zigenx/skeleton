@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Apply;
 
+use Domain\Apply\Actions\Recruit\DeleteRecruitAction;
 use Domain\Apply\Actions\Recruit\UpsertRecruitAction;
 use Domain\Apply\DataTransferObjects\RecruitData;
-use Domain\Apply\Models\Company;
 use Domain\Apply\Models\Recruit;
 use Domain\Apply\ViewModels\RecruitViewModels;
 use Domain\Apply\ViewModels\UpsertRecruitViewModel;
@@ -33,7 +33,7 @@ class RecruitController
     public function store(Request $request): RedirectResponse
     {
         UpsertRecruitAction::execute(
-            RecruitData::fromRequest($request),
+            RecruitData::validateAndCreate($request),
         );
 
         return Redirect::route('recruits.index');
@@ -46,11 +46,29 @@ class RecruitController
         ]);
     }
 
-    public function update(Request $request): Response
+	public function update(Request $request): RedirectResponse
     {
-        return Inertia::render('Recruit/Create', [
-            'model' => new UpsertRecruitViewModel()
+        UpsertRecruitAction::execute(
+            RecruitData::validateAndCreate($request)
+        );
+
+        return Redirect::route('recruits.index');
+
+    }
+
+	public function show(Recruit $recruit): Response
+    {
+        return Inertia::render('Recruit/Show', [
+            'model' => new UpsertRecruitViewModel($recruit)
         ]);
     }
 
+	public function destroy(Recruit $recruit): RedirectResponse
+    {
+        DeleteRecruitAction::execute(
+			RecruitData::fromModel($recruit)
+		);
+
+		return Redirect::route('recruits.index');
+    }
 }

@@ -1,11 +1,10 @@
 <script setup>
 
 import InputLabel from "@/Components/InputLabel.vue";
-import {Head, router, useForm} from "@inertiajs/vue3";
+import {Head, useForm} from "@inertiajs/vue3";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import TextInput from "@/Components/TextInput.vue";
-import {reactive} from "vue";
 
 const props = defineProps({
     model: {
@@ -30,8 +29,6 @@ function submit() {
 
 <template>
     <Head title="Companies"/>
-
-    {{model}}
 
     <AuthenticatedLayout>
         <template #header>

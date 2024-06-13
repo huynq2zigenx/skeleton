@@ -2,8 +2,8 @@
 
 namespace Domain\Apply\DataTransferObjects;
 
-use Domain\Apply\Models\Entry;
 use Domain\Apply\Models\Company;
+use Domain\Apply\Models\Entry;
 use Illuminate\Http\Request;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Lazy;
@@ -15,7 +15,7 @@ class EntryData extends Data
         public readonly string $last_name,
 		public readonly string $phone,
         public readonly string $email,
-        public readonly null|Lazy|Company|array $company
+        public readonly null|Lazy|CompanyData|array $company
     )
     {}
 
@@ -23,6 +23,7 @@ class EntryData extends Data
     {
         return self::from([
             ...$request->all(),
+			'company' => CompanyData::from(Company::findOrFail($request->company_id)),
         ]);
     }
 
@@ -30,6 +31,7 @@ class EntryData extends Data
     {
         return self::from([
             ...$entry->toArray(),
+			'company' => Lazy::whenLoaded('company', $entry, fn() => CompanyData::from($entry->company)),
         ]);
     }
 
@@ -38,8 +40,8 @@ class EntryData extends Data
         return [
             'first_name' => ['required', 'string'],
             'last_name' => ['required', 'string'],
-            'phone' => ['required', 'string'],
-            'mail' => ['required', 'string'],
+            'phone' => ['required', 'numeric', 'digits:10'],
+            'email' => ['required', 'string', 'email'],
             'company_id' => ['sometimes', 'int', 'exists:companies,id'],
         ];
     }

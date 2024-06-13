@@ -21,7 +21,7 @@ function getTotalPage() {
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 				<div class="flex justify-between">
-					<Pagination :total="getTotalPage()" :path="model.entries.path" :curentPage="model.entries.current_page"></Pagination>
+					<Pagination :total="getTotalPage()" :model="model.entries"></Pagination>
 					<Link href="/entries/create" method="get" as="button" type="button" class="btn btn-primary mb-2">Create</Link>
 				</div>
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -30,13 +30,13 @@ function getTotalPage() {
                             <!-- head -->
                             <thead>
                             <tr>
-                                <th>id</th>
-                                <th>first_name</th>
-                                <th>last_name</th>
-                                <th>phone</th>
-								<th>email</th>
-								<th>company</th>
-								<th colspan="2"></th>
+                                <th>Id</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Phone</th>
+								<th>Email</th>
+								<th>Company</th>
+								<th colspan="2" class="text-center">Actions</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -48,8 +48,8 @@ function getTotalPage() {
                                 <td>{{entry.phone}}</td>
                                 <td>{{entry.email}}</td>
                                 <td>{{entry.company.name}}</td>
-								<td><Link :href="`${model.entries.path}/${entry.id}/edit`" method="get" as="button" type="button" class="btn mb-2">edit</Link></td>
-								<td><a :href="`${model.entries.path}/${entry.id}/show`">delete</a></td>
+								<td class="text-center"><Link :href="`${model.entries.path}/${entry.id}/edit`" class="btn btn-warning">Edit</Link></td>
+								<td class="text-center"><Link :href="`${model.entries.path}/${entry.id}/show`" class="btn btn-info">show</Link></td>
                             </tr>
                             </tbody>
                         </table>

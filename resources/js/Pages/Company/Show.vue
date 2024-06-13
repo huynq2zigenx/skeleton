@@ -4,7 +4,6 @@ import {Head, router} from "@inertiajs/vue3";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import TextInput from "@/Components/TextInput.vue";
-import PrimaryButton from "@/Components/PrimaryButton.vue";
 import {reactive} from "vue";
 import DeleteForm from "@/Components/DeleteForm.vue";
 
@@ -58,7 +57,7 @@ const form = reactive({
                     </div>
 
                     <div class="flex items-center justify-end mt-4">
-                        <DeleteForm></DeleteForm>
+                        <DeleteForm :routeName="`/companies/${model.company.id}`"></DeleteForm>
                     </div>
                 </form>
             </div>

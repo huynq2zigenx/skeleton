@@ -1,19 +1,41 @@
 <script setup>
-defineProps({});
+import { router } from "@inertiajs/vue3";
+import { computed, ref } from "vue";
+
+const props = defineProps({
+  routeName: {
+	type: String,
+	required: true,
+  },
+});
+
+const isModalOpen = ref(false);
+
+function toggleModal() {
+  isModalOpen.value = !isModalOpen.value;
+}
+
+const classes = computed(() => 
+  isModalOpen.value ? 'modal-open' : ''
+);
+
+function submit() {
+  router.delete(props.routeName);
+}
 </script>
+
 <template>
-	<button class="btn" onclick="my_modal_1.showModal()" open>Form delete</button>
-	<dialog id="my_modal_1" class="modal">
-		<div class="modal-box">
-			<h3 class="font-bold text-lg">Comfirm delete!</h3>
-			<p class="py-4">Are you sure delete</p>
-			<div class="modal-action">
-			<form method="dialog">
-				<!-- if there is a button in form, it will close the modal -->
-				<button class="btn mx-2">Close</button>
-				<button class="btn bg-red-600">Delete</button>
-			</form>
-			</div>
-		</div>
-	</dialog>
+  <div class="btn btn-error" @click="toggleModal">Delete</div>
+  <dialog class="modal" :class="classes">
+	<div class="modal-box">
+	  <h3 class="font-bold text-lg">Confirm Delete!</h3>
+	  <p class="py-4">Are you sure you want to delete?</p>
+	  <div class="modal-action">
+		<form method="dialog">
+		  <button type="button" class="btn mx-2" @click="toggleModal">Close</button>
+		  <button type="button" class="btn btn-error" @click="submit">Delete</button>
+		</form>
+	  </div>
+	</div>
+  </dialog>
 </template>

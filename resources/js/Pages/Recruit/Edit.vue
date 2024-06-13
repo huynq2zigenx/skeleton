@@ -1,24 +1,29 @@
 <script setup>
 
-import {Head, router} from "@inertiajs/vue3";
+import {Head, useForm} from "@inertiajs/vue3";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import TextInput from "@/Components/TextInput.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
-import {reactive} from "vue";
 
-const { model } = defineProps({ model: Object })
+const props = defineProps({
+    model: {
+        required: true,
+        type: Object
+    },
+    errors: Object
+})
 
-const form = reactive({
-    'title': model.recruit.title,
-    'description': model.recruit.description,
-	'start_date': model.recruit.start_date,
-	'end_date': model.recruit.end_date,
-	'company_id': model.recruit.company.id
+const form = useForm({
+    'title': props.model.recruit.title,
+    'description': props.model.recruit.description,
+	'start_date': props.model.recruit.start_date,
+	'end_date': props.model.recruit.end_date,
+	'company_id': props.model.recruit.company.id
 })
 
 function submit() {
-    router.post('/recruits',form)
+	form.put(route('recruits.update', props.model.recruit.id))
 }
 
 </script>
@@ -42,10 +47,10 @@ function submit() {
                             type="text"
                             class="mt-1 block w-full"
                             v-model="form.title"
-                            required
                             autofocus
                         />
 
+                        <div v-if="errors.title" class="text-red-500 mt-2">{{ errors.title }}</div>
                     </div>
 
                     <div class="mt-4">
@@ -59,6 +64,7 @@ function submit() {
                             required
                         />
 
+                        <div v-if="errors.description" class="text-red-500 mt-2">{{ errors.description }}</div>
                     </div>
 					<div class="mt-4">
                         <InputLabel for="start_date" value="Start date" />
@@ -73,6 +79,7 @@ function submit() {
 
                     </div>
 
+                    <div v-if="errors.start_date" class="text-red-500 mt-2">{{ errors.start_date }}</div>
 					<div class="mt-4">
                         <InputLabel for="end_date" value="End date" />
 
@@ -84,6 +91,7 @@ function submit() {
                             required
                         />
 
+                    	<div v-if="errors.end_date" class="text-red-500 mt-2">{{ errors.end_date }}</div>
                     </div>
 					<div class="mt-4">
                         <InputLabel for="company" value="Comapny" />
