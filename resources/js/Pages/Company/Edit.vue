@@ -1,27 +1,37 @@
 <script setup>
 
-import {Head, router} from "@inertiajs/vue3";
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import InputLabel from "@/Components/InputLabel.vue";
-import TextInput from "@/Components/TextInput.vue";
+import {Head, router, useForm} from "@inertiajs/vue3";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+import TextInput from "@/Components/TextInput.vue";
 import {reactive} from "vue";
 
-const { model } = defineProps({ model: Object })
+const props = defineProps({
+    model: {
+        required: true,
+        type: Object
+    },
+    errors: Object
+    }
+)
 
-const form = reactive({
-    'name': model.company.name,
-    'address': model.company.address
+const form = useForm({
+    'id': props.model.company.id,
+    'name': props.model.company.name,
+    'address': props.model.company.address
 })
 
 function submit() {
-    router.post('/companies',form)
+    form.put(route('companies.update', props.model.company.id))
 }
 
 </script>
 
 <template>
     <Head title="Companies"/>
+
+    {{model}}
 
     <AuthenticatedLayout>
         <template #header>
@@ -39,9 +49,9 @@ function submit() {
                             type="text"
                             class="mt-1 block w-full"
                             v-model="form.name"
-                            required
                             autofocus
                         />
+                        <div v-if="errors.name" class="text-red-500 mt-2">{{ errors.name }}</div>
 
                     </div>
 
@@ -55,12 +65,13 @@ function submit() {
                             v-model="form.address"
                             required
                         />
+                        <div v-if="errors.address" class="text-red-500 mt-2">{{ errors.address }}</div>
 
                     </div>
 
                     <div class="flex items-center justify-end mt-4">
                         <PrimaryButton class="ms-4"  type="submit" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                            Save
+                           Save
                         </PrimaryButton>
                     </div>
                 </form>

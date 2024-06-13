@@ -7,13 +7,14 @@ import TextInput from "@/Components/TextInput.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import {reactive} from "vue";
 
+defineProps({ errors: Object })
+
 const form = reactive({
     'name': null,
     'address': null
 })
 
 function submit() {
-    // console.log(form);
     router.post('/companies',form)
 }
 
@@ -38,9 +39,9 @@ function submit() {
                             type="text"
                             class="mt-1 block w-full"
                             v-model="form.name"
-                            required
                             autofocus
                         />
+                        <div v-if="errors.name" class="text-red-500 mt-2">{{ errors.name }}</div>
 
                     </div>
 
@@ -54,6 +55,7 @@ function submit() {
                             v-model="form.address"
                             required
                         />
+                        <div v-if="errors.address" class="text-red-500 mt-2">{{ errors.address }}</div>
 
                     </div>
 

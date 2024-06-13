@@ -49,8 +49,8 @@ function getTotalPage() {
                                 <td>{{recruit.company.name}}</td>
                                 <td>{{recruit.start_date}}</td>
                                 <td>{{recruit.end_date}}</td>
-								<td><Link :href="model.recruits.path + '/' +recruit.id+'/edit'" method="get" as="button" type="button" class="btn mb-2">edit</Link></td>
-								<td><a :href="model.recruits.path + '/' +recruit.id">delete</a></td>
+								<td><Link :href="`${model.recruits.path}/${recruit.id}/edit`" method="get" as="button" type="button" class="btn mb-2">edit</Link></td>
+								<td><a :href="`${model.recruits.path}/${recruit.id}/show`">delete</a></td>
                             </tr>
                             </tbody>
                         </table>

@@ -20,7 +20,6 @@ function getTotalPage() {
         </template>
 
         <div class="py-12">
-
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 				<div class="flex justify-between">
 					<Pagination :total="getTotalPage()" :path="model.companies.path" :curentPage="model.companies.current_page"></Pagination>
@@ -34,21 +33,23 @@ function getTotalPage() {
                             <tr>
                                 <th></th>
                                 <th>Name</th>
-                                <th>address</th>
-                                <th>owner</th>
-								<th colspan="2"></th>
+                                <th>Address</th>
+                                <th>Owner</th>
+                                <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
                             <!-- row 1 -->
                             <tr v-for="company in model.companies.data">
-                                <th>{{company.id}}</th>
-                                <td>{{company.name}}</td>
-                                <td>{{company.address}}</td>
-                                <td>{{company.user.name}}</td>
-								<td><Link :href="model.companies.path + '/' +company.id" method="get" as="button" type="button" class="btn mb-2">view</Link></td>
-								<td><Link :href="model.companies.path + '/' +company.id+'/edit'" method="get" as="button" type="button" class="btn mb-2">edit</Link></td>
-							</tr>
+                                <th>{{ company.id }}</th>
+                                <td>{{ company.name }}</td>
+                                <td>{{ company.address }}</td>
+                                <td>{{ company.user.name }}</td>
+                                <td>
+                                    <Link :href="`/companies/${company.id}/edit`" class="btn btn-primary">Edit</Link>
+                                </td>
+                            </tr>
+
                             </tbody>
                         </table>
                     </div>

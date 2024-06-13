@@ -32,32 +32,29 @@ class CompanyController
     public function store(Request $request): RedirectResponse
     {
         UpsertCompanyAction::execute(
-            CompanyData::fromRequest($request),
+            CompanyData::validateAndCreate($request->all()),
             $request->user()
         );
 
         return Redirect::route('companies.index');
     }
 
-	public function edit(Company $company): Response
+    public function edit(Company $company): Response
     {
         return Inertia::render('Company/Edit', [
             'model' => new UpsertCompanyViewModel($company)
         ]);
     }
 
-    public function update(Request $request): Response
+    public function update(Request $request, Company $company): RedirectResponse
     {
-        return Inertia::render('Company/Create', [
-            'model' => new UpsertCompanyViewModel()
-        ]);
-    }
+        UpsertCompanyAction::execute(
+            CompanyData::validateAndCreate($request->all()),
+            $request->user()
+        );
 
-	public function show(Company $company): Response
-    {
-        return Inertia::render('Company/Show', [
-            'model' => new UpsertCompanyViewModel($company)
-        ]);
+        return Redirect::route('companies.index');
+
     }
 
 }

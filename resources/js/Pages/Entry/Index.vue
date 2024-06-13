@@ -48,8 +48,8 @@ function getTotalPage() {
                                 <td>{{entry.phone}}</td>
                                 <td>{{entry.email}}</td>
                                 <td>{{entry.company.name}}</td>
-								<td><Link :href="model.entries.path + '/' +entry.id+'/edit'" method="get" as="button" type="button" class="btn mb-2">edit</Link></td>
-								<td><a :href="model.entries.path + '/' +entry.id">delete</a></td>
+								<td><Link :href="`${model.entries.path}/${entry.id}/edit`" method="get" as="button" type="button" class="btn mb-2">edit</Link></td>
+								<td><a :href="`${model.entries.path}/${entry.id}/show`">delete</a></td>
                             </tr>
                             </tbody>
                         </table>
