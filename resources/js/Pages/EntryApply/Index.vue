@@ -28,13 +28,17 @@ function submit() {
 </script>
 
 <template>
-    <Head title="Welcome" />
-	<div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50 min-w-full">
+    <Head title="Apply entry" />
+	<div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50 min-w-ful">
+		<div class="w-full flex justify-center mt-2">
+			<a href="/home" class="w-40 text-center btn leading-5 block p-3 text-3xl text-black">Home</a>
+		</div>
 		<div
 			class="relative min-h-screen flex flex-col items-center justify-center selection:bg-[#FF2D20] selection:text-white"
 		>
-			<div class="relative w-full max-w-2xl px-6 lg:max-w-5xl">
-				<main class="mt-6">
+			<div class="relative w-full max-w-2xl px-6 lg:max-w-5xl border border-gray-200 shadow-lg rounded-lg">
+				<div class="capitalize py-3 mt-2 text-2xl text-black">Form apply</div>
+				<main class="my-6">
 					<form @submit.prevent="submit">
 						<div>
 							<InputLabel for="first_name" value="Firt Name" />
@@ -98,9 +102,6 @@ function submit() {
 						</div>
 					</form>
 				</main>
-
-				<footer class="py-16 text-center text-sm text-black dark:text-white/70">
-				</footer>
 			</div>
 		</div>
 	</div>
