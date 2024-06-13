@@ -13,7 +13,7 @@ const form = reactive({
     'description': null,
 	'start_date': null,
 	'end_date': null,
-	'company_id': 1,
+	'company_id': null,
 })
 
 function submit() {
@@ -86,7 +86,7 @@ function submit() {
                     </div>
 					<div class="mt-4">
                         <InputLabel for="company" value="Comapny" />
-						<select class="select select-bordered w-full max-w-xs mt-1 block w-full" id="company" v-model="company_id">
+						<select class="select select-bordered w-full max-w-xs mt-1 block w-full" id="company" v-model="form.company_id">
 							<option v-for="(company, key) in model.companies" :value="company.id">
 								{{company.name}}
 							</option>

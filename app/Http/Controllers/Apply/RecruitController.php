@@ -34,7 +34,6 @@ class RecruitController
     {
         UpsertRecruitAction::execute(
             RecruitData::fromRequest($request),
-            Company::where('id', $request->company_id)->first()
         );
 
         return Redirect::route('recruits.index');

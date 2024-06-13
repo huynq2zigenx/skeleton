@@ -8,7 +8,7 @@ use Domain\Apply\Models\Recruit;
 
 class UpsertRecruitAction
 {
-    public static function execute(RecruitData $data, Company $company): Recruit
+    public static function execute(RecruitData $data): Recruit
     {
         $recruit = Recruit::updateOrCreate(
             [
@@ -16,7 +16,7 @@ class UpsertRecruitAction
             ],
             [
                 ...$data->all(),
-                'company_id' => $company->id,
+                'company_id' => $data->company->id
             ]
         );
 

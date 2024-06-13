@@ -15,7 +15,7 @@ class RecruitData extends Data
         public readonly string $description,
 		public readonly string $start_date,
         public readonly string $end_date,
-        public readonly null|Lazy|Company|array $company
+        public readonly null|Lazy|CompanyData $company
     )
     {}
 
@@ -23,6 +23,7 @@ class RecruitData extends Data
     {
         return self::from([
             ...$request->all(),
+            'company' => CompanyData::from(Company::findOrFail($request->company_id))
         ]);
     }
 
@@ -30,6 +31,7 @@ class RecruitData extends Data
     {
         return self::from([
             ...$recruit->toArray(),
+            'company' => Lazy::whenLoaded('company', $recruit, fn() => CompanyData::from($recruit->company))
         ]);
     }
 
