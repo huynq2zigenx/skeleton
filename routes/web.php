@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Apply\CompanyController;
+use App\Http\Controllers\Apply\EntryController;
+use App\Http\Controllers\Apply\RecruitController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -16,7 +18,8 @@ Route::get('/', function () {
 });
 
 Route::Resource('companies', CompanyController::class);
-
+Route::Resource('recruits', RecruitController::class);
+Route::Resource('entries', EntryController::class);
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

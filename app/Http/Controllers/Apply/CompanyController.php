@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Apply;
 
 use Domain\Apply\Actions\Company\UpsertCompanyAction;
 use Domain\Apply\DataTransferObjects\CompanyData;
+use Domain\Apply\Models\Company;
 use Domain\Apply\ViewModels\CompanyViewModels;
 use Domain\Apply\ViewModels\UpsertCompanyViewModel;
 use Illuminate\Http\Request;
@@ -38,10 +39,24 @@ class CompanyController
         return Redirect::route('companies.index');
     }
 
+	public function edit(Company $company): Response
+    {
+        return Inertia::render('Company/Edit', [
+            'model' => new UpsertCompanyViewModel($company)
+        ]);
+    }
+
     public function update(Request $request): Response
     {
         return Inertia::render('Company/Create', [
             'model' => new UpsertCompanyViewModel()
+        ]);
+    }
+
+	public function show(Company $company): Response
+    {
+        return Inertia::render('Company/Show', [
+            'model' => new UpsertCompanyViewModel($company)
         ]);
     }
 

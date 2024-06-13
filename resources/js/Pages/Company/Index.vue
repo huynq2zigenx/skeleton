@@ -1,9 +1,14 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import {Head, Link} from "@inertiajs/vue3";
+import Pagination from "@/Components/Pagination.vue";
+import DangerButton from "@/Components/DangerButton.vue";
 
-defineProps({ model: Object })
+const { model } = defineProps({ model: Object })
 
+function getTotalPage() {
+	return Math.ceil(model.total / model.companies.per_page)
+}
 </script>
 
 <template>
@@ -15,9 +20,12 @@ defineProps({ model: Object })
         </template>
 
         <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <Link href="/companies/create" method="get" as="button" type="button" class="btn btn-primary mb-2">Create</Link>
 
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+				<div class="flex justify-between">
+					<Pagination :total="getTotalPage()" :path="model.companies.path" :curentPage="model.companies.current_page"></Pagination>
+					<Link href="/companies/create" method="get" as="button" type="button" class="btn btn-primary mb-2">Create</Link>
+				</div>
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="overflow-x-auto">
                         <table class="table">
@@ -28,6 +36,7 @@ defineProps({ model: Object })
                                 <th>Name</th>
                                 <th>address</th>
                                 <th>owner</th>
+								<th colspan="2"></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -37,8 +46,9 @@ defineProps({ model: Object })
                                 <td>{{company.name}}</td>
                                 <td>{{company.address}}</td>
                                 <td>{{company.user.name}}</td>
-                            </tr>
-
+								<td><Link :href="model.companies.path + '/' +company.id" method="get" as="button" type="button" class="btn mb-2">view</Link></td>
+								<td><Link :href="model.companies.path + '/' +company.id+'/edit'" method="get" as="button" type="button" class="btn mb-2">edit</Link></td>
+							</tr>
                             </tbody>
                         </table>
                     </div>
