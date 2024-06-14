@@ -23,6 +23,10 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/about', function () {
+    return Inertia::render('About');
+});
+
 Route::middleware('auth')->group(function () {
     Route::Resource('companies', CompanyController::class);
 	Route::Resource('recruits', RecruitController::class);

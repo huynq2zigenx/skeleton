@@ -12,13 +12,13 @@ use Illuminate\Queue\SerializesModels;
 class EntryApplySendMail extends Mailable
 {
     use Queueable, SerializesModels;
+    protected string $class = Entry::class;
 
     /**
      * Create a new message instance.
      */
     public function __construct(public readonly Entry $entry)
     {
-        //
     }
 
     /**
@@ -39,7 +39,7 @@ class EntryApplySendMail extends Mailable
         return new Content(
             view: 'mail.entry',
 			with: [
-                'body' => 'test send mail',
+                'body' => $this->entry->email
             ],
         );
     }

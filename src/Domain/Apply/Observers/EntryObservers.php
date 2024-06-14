@@ -14,32 +14,18 @@ class EntryObservers
             ->queue(new EntryApplySendMail($entry));
     }
 
-    /**
-     * Handle the model "updating" event.
-     *
-     * @param  Domain\Apply\Models  $entry
-     * @return void
-     */
+
+
     public function updating(Entry $entry)
     {
     }
 
-    /**
-     * Handle the model "restored" event.
-     *
-     * @param  Domain\Apply\Models  $entry
-     * @return void
-     */
+
     public function restored(Entry $entry)
     {
     }
 
-    /**
-     * Handle the model "forceDeleted" event.
-     *
-     * @param  Domain\Apply\Models  $entry
-     * @return void
-     */
+
     public function forceDeleted(Entry $entry)
     {
     }
