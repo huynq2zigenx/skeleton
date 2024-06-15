@@ -6,7 +6,6 @@ import Pagination from "@/Components/Pagination.vue";
 const { model } = defineProps({ model: Object })
 
 function getTotalPage() {
-	console.log(model.companies);
 	return Math.ceil(model.total / model.recruits.per_page)
 }
 </script>
