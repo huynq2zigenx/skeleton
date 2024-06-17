@@ -25,7 +25,7 @@ class EntryController
         ]);
     }
 
-	public function index2(Recruit $recruit): Response
+	public function showEntryForm(Recruit $recruit): Response
     {
 		return Inertia::render('EntryApply/Index', [
             'model' => new UpsertRecruitViewModel($recruit)

@@ -36,7 +36,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('/entry/{recruit}', [EntryController::class, 'index2'])->name('entry.index2');
+Route::get('/entry/{recruit}', [EntryController::class, 'showEntryForm'])->name('entry.showEntryForm');
 Route::post('/entry', [EntryController::class, 'store'])->name('entry.store');
 
 require __DIR__.'/auth.php';
