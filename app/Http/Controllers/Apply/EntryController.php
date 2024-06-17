@@ -9,6 +9,8 @@ use Domain\Apply\Models\Entry;
 use Domain\Apply\ViewModels\EntryViewModels;
 use Domain\Apply\ViewModels\UpsertEntryViewModel;
 use Illuminate\Http\Request;
+use Domain\Apply\Models\Recruit;
+use Domain\Apply\ViewModels\UpsertRecruitViewModel;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -20,6 +22,13 @@ class EntryController
     {
         return Inertia::render('Entry/Index', [
             'model' => new EntryViewModels($request->get('page',1))
+        ]);
+    }
+
+	public function index2(Recruit $recruit): Response
+    {
+		return Inertia::render('EntryApply/Index', [
+            'model' => new UpsertRecruitViewModel($recruit)
         ]);
     }
 
@@ -36,7 +45,7 @@ class EntryController
             EntryData::validateAndCreate($request)
         );
 
-        return Redirect::route('entries.index');
+        return Redirect::route('home');
     }
 
 	public function edit(Entry $Entry): Response
