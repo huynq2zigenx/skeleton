@@ -29,14 +29,14 @@ Route::get('/about', function () {
 Route::middleware('auth')->group(function () {
     Route::Resource('companies', CompanyController::class);
 	Route::Resource('recruits', RecruitController::class);
-	Route::Resource('entries', EntryController::class);
+	Route::get('/entries', [EntryController::class, 'index'])->name('entries.index');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('/entry/{recruit}', [EntryController::class, 'showEntryForm'])->name('entry.showEntryForm');
+Route::get('/entry/{recruit}', [EntryController::class, 'create'])->name('entry.create');
 Route::post('/entry', [EntryController::class, 'store'])->name('entry.store');
 
 require __DIR__.'/auth.php';

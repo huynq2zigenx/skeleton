@@ -25,17 +25,10 @@ class EntryController
         ]);
     }
 
-	public function showEntryForm(Recruit $recruit): Response
+	public function create(Recruit $recruit): Response
     {
 		return Inertia::render('EntryApply/Index', [
             'model' => new UpsertRecruitViewModel($recruit)
-        ]);
-    }
-
-    public function create(Request $request): Response
-    {
-        return Inertia::render('Entry/Create', [
-            'model' => new UpsertEntryViewModel()
         ]);
     }
 
@@ -46,38 +39,5 @@ class EntryController
         );
 
         return Redirect::route('home');
-    }
-
-	public function edit(Entry $Entry): Response
-    {
-        return Inertia::render('Entry/Edit', [
-            'model' => new UpsertEntryViewModel($Entry)
-        ]);
-    }
-	
-    public function update(Request $request): RedirectResponse
-    {
-        UpsertCompanyAction::execute(
-            EntryData::validateAndCreate($request)
-        );
-
-        return Redirect::route('entries.index');
-
-    }
-
-	public function show(Entry $Entry): Response
-    {
-        return Inertia::render('Entry/Show', [
-            'model' => new UpsertEntryViewModel($Entry)
-        ]);
-    }
-
-	public function destroy(Recruit $recruit): RedirectResponse
-    {
-        DeleteEntryAction::execute(
-			RecruitData::fromModel($recruit)
-		);
-
-		return Redirect::route('recruits.index');
     }
 }
