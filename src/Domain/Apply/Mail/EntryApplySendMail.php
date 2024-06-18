@@ -11,7 +11,7 @@ use Illuminate\Queue\SerializesModels;
 
 class EntryApplySendMail extends Mailable
 {
-    use Queueable, SerializesModels;
+    use Queueable;
     protected string $class = Entry::class;
 
     /**

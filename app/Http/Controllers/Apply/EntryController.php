@@ -18,16 +18,9 @@ use Illuminate\Http\RedirectResponse;
 
 class EntryController
 {
-	public function index(Request $request): Response
-    {
-        return Inertia::render('Entry/Index', [
-            'model' => new EntryViewModels($request->get('page',1))
-        ]);
-    }
-
 	public function create(Recruit $recruit): Response
     {
-		return Inertia::render('EntryApply/Index', [
+		return Inertia::render('Entry/Index', [
             'model' => new UpsertRecruitViewModel($recruit)
         ]);
     }

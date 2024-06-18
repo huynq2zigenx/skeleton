@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('phone');
             $table->foreignIdFor(\Domain\Apply\Models\Company::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(\Domain\Apply\Models\Recruit::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

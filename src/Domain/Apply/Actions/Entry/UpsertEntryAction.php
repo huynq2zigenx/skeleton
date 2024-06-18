@@ -3,7 +3,6 @@
 namespace Domain\Apply\Actions\Entry;
 
 use Domain\Apply\DataTransferObjects\EntryData;
-use Domain\Apply\Models\Company;
 use Domain\Apply\Models\Entry;
 
 class UpsertEntryAction
@@ -17,6 +16,7 @@ class UpsertEntryAction
             [
                 ...$data->all(),
                 'company_id' => $data->company->id,
+                'recruit_id' => $data->recruit->id,
             ]
         );
 

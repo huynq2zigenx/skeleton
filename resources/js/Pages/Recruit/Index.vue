@@ -11,7 +11,7 @@ function getTotalPage() {
 </script>
 
 <template>
-    <Head title="Companies" />
+    <Head title="Recruits" />
 
     <AuthenticatedLayout>
         <template #header>
@@ -34,6 +34,7 @@ function getTotalPage() {
                                 <th>Title</th>
                                 <th>Description</th>
                                 <th>Company</th>
+                                <th>Prefecture</th>
                                 <th>Start date</th>
                                 <th>End date</th>
 								<th colspan="2" class="text-center">Actions</th>
@@ -46,6 +47,7 @@ function getTotalPage() {
                                 <td>{{recruit.title}}</td>
                                 <td>{{recruit.description}}</td>
                                 <td>{{recruit.company.name}}</td>
+                                <td>{{recruit.prefecture.name}}</td>
                                 <td>{{recruit.start_date}}</td>
                                 <td>{{recruit.end_date}}</td>
 								<td class="text-center"><Link :href="`${model.recruits.path}/${recruit.id}/edit`" class="btn btn-warning">Edit</Link></td>

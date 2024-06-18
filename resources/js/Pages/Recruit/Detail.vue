@@ -1,9 +1,5 @@
 <script setup>
-import GuestLayout from "@/Layouts/GuestLayout.vue";
 import {Head, Link, useForm} from "@inertiajs/vue3";
-import InputLabel from "@/Components/InputLabel.vue";
-import TextInput from "@/Components/TextInput.vue";
-import PrimaryButton from "@/Components/PrimaryButton.vue";
 
 const props = defineProps({
     model: {
@@ -13,25 +9,13 @@ const props = defineProps({
     errors: Object
 })
 
-const form = useForm({
-    'first_name': null,
-    'last_name': null,
-	'phone': null,
-	'email': null,
-	'company_id': props.model.recruit.company.id,
-})
-
-function submit() {
-	form.post(route('entry.store'), form)
-}
-
 </script>
 
 <template>
     <Head title="Apply entry" />
 	<div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
 		<div
-			class="relative min-h-screen flex flex-col items-center justify-center selection:bg-[#FF2D20] selection:text-white"
+			class="relative min-h-screen flex flex-col items-center selection:bg-[#FF2D20] selection:text-white"
 		>
 			<div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
 				<header class="grid grid-cols-2 items-center gap-2 py-10 lg:grid-cols-3">
@@ -83,73 +67,24 @@ function submit() {
                     </nav>
                 </header>
 
-				<main class="my-6 border border-black-600 p-4 rounded-lg shadow-2xl">
-					<form @submit.prevent="submit">
-						<div>
-							<InputLabel for="first_name" value="Firt Name" />
-
-							<TextInput
-								id="first_name"
-								type="text"
-								class="mt-1 block w-full"
-								v-model="form.first_name"
-								placeholder="Enter first name"
-								required
-								autofocus
-							/>
-							<div v-if="errors.first_name" class="text-red-500 mt-2">{{ errors.first_name }}</div>
-						</div>
-
-						<div class="mt-4">
-							<InputLabel for="last_name" value="Last Name" />
-
-							<TextInput
-								id="last_name"
-								type="text"
-								class="mt-1 block w-full"
-								v-model="form.last_name"
-								placeholder="Enter Last Name"
-								required
-							/>
-							<div v-if="errors.last_name" class="text-red-500 mt-2">{{ errors.last_name }}</div>
-						</div>
-						<div class="mt-4">
-							<InputLabel for="email" value="Email" />
-
-							<TextInput
-								id="email"
-								type="email"
-								class="mt-1 block w-full"
-								v-model="form.email"
-								placeholder="Enter email"
-								required
-							/>
-							<div v-if="errors.email" class="text-red-500 mt-2">{{ errors.email }}</div>
-						</div>
-
-						<div class="mt-4">
-							<InputLabel for="phone" value="Phone" />
-
-							<TextInput
-								id="phone"
-								type="text"
-								class="mt-1 block w-full"
-								v-model="form.phone"
-								placeholder="Enter phone"
-								required
-							/>
-							<div v-if="errors.phone" class="text-red-500 mt-2">{{ errors.phone }}</div>
-						</div>
-						<div class="flex items-center justify-center mt-4">
-							<PrimaryButton class="ms-4"  type="submit" :class="{ 'opacity-25': form.processing }" >
-								Apply
-							</PrimaryButton>
-						</div>
-					</form>
+				<main class="mt-6">
+					<div class="grid gap-6 md:grid-cols-1 place-content-between">
+						<Link :href="`/recruits/detail/${props.model.recruit.id}`" class="card w-100 bg-base-100 shadow-xl">
+							<figure class="px-10 pt-10">
+								<img :src="'/storage/image/goku.jpg'" alt="Shoes" class="rounded-xl" />
+							</figure>
+							<div class="card-body items-center text-center">
+								<h2 class="card-title">{{ props.model.recruit.title }}</h2>
+								<p>{{ props.model.recruit.description }}</p>
+								<div class="card-actions">
+								<Link :href="`/entry/${props.model.recruit.id}`"><button class="btn bg-orange-300">Apply Now</button></Link>
+								</div>
+							</div>
+						</Link>
+					</div>
 				</main>
 
 				<footer class="py-16 text-center text-sm text-black dark:text-white/70">
-					Laravel v{{ laravelVersion }} (PHP v{{ phpVersion }})
 				</footer>
 			</div>
 		</div>

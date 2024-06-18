@@ -12,7 +12,7 @@ class HomeController
 	public function index(Request $request): Response
     {
         return Inertia::render('Home/Index', [
-            'model' => new RecruitViewModels($request->get('page',1))
+            'model' => new RecruitViewModels($request->get('page',1), route('home'), $request->all()),
         ]);
     }
 }

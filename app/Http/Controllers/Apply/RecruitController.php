@@ -19,7 +19,7 @@ class RecruitController
 	public function index(Request $request): Response
     {
         return Inertia::render('Recruit/Index', [
-            'model' => new RecruitViewModels($request->get('page',1))
+            'model' => new RecruitViewModels($request->get('page',1), route('recruits.index'))
         ]);
     }
 
@@ -70,5 +70,12 @@ class RecruitController
 		);
 
 		return Redirect::route('recruits.index');
+    }
+
+	public function detail(Recruit $recruit): Response
+    {
+        return Inertia::render('Recruit/Detail', [
+            'model' => new UpsertRecruitViewModel($recruit)
+        ]);
     }
 }

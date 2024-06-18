@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->foreignIdFor(\Domain\Apply\Models\Company::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(\Domain\Apply\Models\Prefecture::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

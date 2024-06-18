@@ -3,6 +3,7 @@
 namespace Database\Factories\Apply;
 
 use Domain\Apply\Models\Company;
+use Domain\Apply\Models\Prefecture;
 use Domain\Apply\Models\Recruit;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -24,7 +25,8 @@ class RecruitFactory extends Factory
             'description' => $this->faker->paragraph(),
             'start_date' => $this->faker->date(),
             'end_date' => $this->faker->date(),
-            'company_id' => Company::factory()
+            'company_id' => Company::factory(),
+			'prefecture_id' => Prefecture::factory(),
         ];
     }
 }

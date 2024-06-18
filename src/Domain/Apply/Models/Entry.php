@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\LaravelData\WithData;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 
-
 #[ObservedBy([EntryObservers::class])]
 class Entry extends BaseModel
 {
@@ -22,7 +21,8 @@ class Entry extends BaseModel
         'last_name',
         'phone',
         'email',
-        'company_id'
+        'company_id',
+		'recruit_id'
     ];
 
     public function company(): BelongsTo
@@ -30,4 +30,8 @@ class Entry extends BaseModel
         return $this->belongsTo(Company::class);
     }
 
+	public function recruit(): BelongsTo
+    {
+        return $this->belongsTo(Recruit::class);
+    }
 }

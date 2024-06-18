@@ -38,9 +38,6 @@ const showingNavigationDropdown = ref(false);
 								<NavLink :href="route('recruits.index')" :active="route().current('recruits.index')">
                                     Recruit
                                 </NavLink>
-								<NavLink :href="route('entries.index')" :active="route().current('entries.index')">
-                                    Entry
-                                </NavLink>
                             </div>
                         </div>
 
@@ -143,8 +140,6 @@ const showingNavigationDropdown = ref(false);
 						<div class="mt-3 space-y-1 border-t border-gray-200">
                             <ResponsiveNavLink :href="route('companies.index')"> Company </ResponsiveNavLink>
                             <ResponsiveNavLink :href="route('recruits.index')"> Recruit </ResponsiveNavLink>
-                            <ResponsiveNavLink :href="route('entries.index')"> Entry </ResponsiveNavLink>
-
                         </div>
                     </div>
                 </div>

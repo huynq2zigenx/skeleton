@@ -4,6 +4,7 @@ namespace Database\Factories\Apply;
 
 use Domain\Apply\Models\Company;
 use Domain\Apply\Models\Entry;
+use Domain\Apply\Models\Recruit;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -24,7 +25,8 @@ class EntryFactory extends Factory
             'last_name' => $this->faker->lastName(),
             'email' => $this->faker->unique()->safeEmail(),
             'phone' => $this->faker->phoneNumber(),
-            'company_id' => Company::factory()
+            'company_id' => Company::factory(),
+            'recruit_id' => Recruit::factory(),
         ];
     }
 }
