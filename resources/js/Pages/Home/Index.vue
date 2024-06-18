@@ -6,10 +6,10 @@ import TextInput from "@/Components/TextInput.vue";
 import AddCondition from "@/Components/AddCondition.vue";
 import { reactive } from "vue";
 
-const { model } = defineProps({ model: Object })
+const { model, query } = defineProps({ model: Object, query: String})
 
 const getQueryParams= () => {
-	const params = new URLSearchParams(window.location.search);
+	const params = new URLSearchParams(query);
 	const queryParams = {};
 	for (const [key, value] of params.entries()) {
 		const match = key.match(/^([^\[]+)(\[.*\])?$/);
@@ -98,7 +98,6 @@ const prepareDataSearch = (searchOption) => {
 }
 
 const handleSearch = () => {
-	console.log(prepareDataSearch(searchOption));
 	router.get('/home', prepareDataSearch(searchOption))
 }
 </script>

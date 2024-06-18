@@ -13,6 +13,7 @@ class HomeController
     {
         return Inertia::render('Home/Index', [
             'model' => new RecruitViewModels($request->get('page',1), route('home'), $request->all()),
+			'query' => $request->getQueryString(),
         ]);
     }
 }
