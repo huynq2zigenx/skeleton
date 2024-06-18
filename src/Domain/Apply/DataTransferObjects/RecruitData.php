@@ -51,7 +51,7 @@ class RecruitData extends Data
 			'description' => ['required', 'string'],
 			'company_id' => ['sometimes', 'int', 'exists:companies,id'],
 			'prefecture_id' => ['sometimes', 'int', 'exists:prefectures,id'],
-			'shokushu_items' => ['required', 'array', 'numericarray']
+			'shokushu_items' => ['required', 'array']
 		];
 	}
 }
