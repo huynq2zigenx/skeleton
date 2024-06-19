@@ -12,6 +12,7 @@ const getQueryParams= () => {
 	const params = new URLSearchParams(query);
 	const queryParams = {};
 	for (const [key, value] of params.entries()) {
+		if (key == 'null' || key === null) continue;
 		const match = key.match(/^([^\[]+)(\[.*\])?$/);
 		if (match) {
 			const paramName = match[1];
