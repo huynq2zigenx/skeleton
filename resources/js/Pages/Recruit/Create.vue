@@ -16,10 +16,10 @@ const props = defineProps({
 })
 const updateChecked = (checked, checkboxItem) => {
 	if(checked) {
-		form.shokushu_items.push(checkboxItem.id)
+		form.shokushu_items.push(checkboxItem)
 		checkboxItem.checked = true;
 	} else {
-		form.shokushu_items = form.shokushu_items.filter(item => item != checkboxItem.id)
+		form.shokushu_items = form.shokushu_items.filter(item => item.id != checkboxItem.id)
 		checkboxItem.checked = false;
 	}
 };

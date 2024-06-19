@@ -3,6 +3,7 @@
 namespace Domain\Apply\Actions\Recruit;
 
 use Domain\Apply\DataTransferObjects\RecruitData;
+use Domain\Apply\DataTransferObjects\ShokushuItemData;
 use Domain\Apply\Models\Recruit;
 
 class UpsertRecruitAction
@@ -20,7 +21,7 @@ class UpsertRecruitAction
             ]
         );
 
-		$recruit->shokushuItems()->sync($data->shokushuItems);
+		$recruit->shokushuItems()->sync(array_column($data->shokushuItems->toArray(), 'id'));
 
         return $recruit;
     }

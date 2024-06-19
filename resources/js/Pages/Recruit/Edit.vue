@@ -17,18 +17,20 @@ const props = defineProps({
 })
 const updateChecked = (checked, checkboxItem) => {
 	if(checked) {
-		form.shokushu_items.push(checkboxItem.id)
+		form.shokushu_items.push(checkboxItem)
 		checkboxItem.checked = true;
 	} else {
-		form.shokushu_items = form.shokushu_items.filter(item => item != checkboxItem.id)
+		form.shokushu_items = form.shokushu_items.filter(item => item.id != checkboxItem.id)
 		checkboxItem.checked = false;
 	}
 };
 
+const shokushuItemsIds = reactive(props.model.recruit.shokushuItems.map((item) => item.id))
+
 const allList = reactive({
 	jobTypes: props.model.shokushu_items.map((item) => {
 		item.checked = false; 
-		if(props.model.recruit.shokushuItems && props.model.recruit.shokushuItems.includes(item.id)) {
+		if(props.model.recruit.shokushuItems && shokushuItemsIds.includes(item.id)) {
 			item.checked = true; 
 		}
 		return item

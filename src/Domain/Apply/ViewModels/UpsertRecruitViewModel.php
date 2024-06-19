@@ -17,7 +17,7 @@ class UpsertRecruitViewModel extends ViewModel
 
     public function recruit(): ?RecruitData
     {
-        return $this->recruit?->load(['company', 'prefecture'])->getData();
+        return $this->recruit?->load(['company', 'prefecture', 'shokushuItems'])->getData();
     }
 
 	public function companies()
