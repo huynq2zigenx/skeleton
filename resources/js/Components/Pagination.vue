@@ -14,7 +14,7 @@ const props = defineProps({
 	},
 	queryString: {
 		type: Object,
-		default: null,
+		default: {},
 	}
 });
 
