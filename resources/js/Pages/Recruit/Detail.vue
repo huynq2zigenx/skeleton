@@ -1,5 +1,6 @@
 <script setup>
 import {Head, Link, useForm} from "@inertiajs/vue3";
+import InputLabel from "@/Components/InputLabel.vue";
 
 const props = defineProps({
     model: {
@@ -70,14 +71,18 @@ const props = defineProps({
 				<main class="mt-6">
 					<div class="grid gap-6 md:grid-cols-1 place-content-between">
 						<Link :href="`/recruits/detail/${props.model.recruit.id}`" class="card w-100 shadow-xl">
-							<figure class="px-10 pt-10">
-								<img :src="'/storage/image/goku.jpg'" alt="Shoes" class="rounded-xl" />
+							<figure class="px-10 pt-10 flex-col flex ">
+								<h2 class="card-title w-full py-5 border-b-2 text-4xl">{{ props.model.recruit.title }}</h2>
+								<h2 class="justify-start w-full pb-4">Company name: {{ props.model.recruit.company.name }}</h2>
+								<img src="https://picsum.photos/700/500" alt="Shoes" class="rounded-xl" />
 							</figure>
 							<div class="card-body items-center text-center">
-								<h2 class="card-title">{{ props.model.recruit.title }}</h2>
 								<p>{{ props.model.recruit.description }}</p>
+								<div class="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3 md:grid-cols-5 md:gap-5 xl:grid-cols-6 xl:gap-6">
+									 <InputLabel for="title" class="border-[#80bcbe] text-[#80bcbe] border-[1px] rounded p-[2px]" :value="jobType.name" v-for="jobType in props.model.recruit.shokushuItems"/>
+								</div>
 								<div class="card-actions">
-								<Link :href="`/entry/${props.model.recruit.id}`"><button class="btn bg-orange-300 border-none text-white">Apply Now</button></Link>
+									<Link :href="`/entry/${props.model.recruit.id}`"><button class="btn bg-orange-300 border-none text-white">Apply Now</button></Link>
 								</div>
 							</div>
 						</Link>

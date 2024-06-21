@@ -161,7 +161,7 @@ const handleSearch = () => {
 
 				<main class="mt-6">
 					<div class="grid gap-6 md:grid-cols-3 lg:grid-cols-3 lg:gap-8 place-content-between">
-						<div class="col-span-1">
+						<div class="col-span-3 lg:col-span-1">
 							<div class="card w-100 shadow-xl border-[#00797e] border-[1px]">
 								<div class="card-body p-0">
 									<h2 class="w-full bg-[#00797e] p-2 rounded-tl-xl rounded-tr-xl text-white">Number of job openings</h2>
@@ -186,10 +186,10 @@ const handleSearch = () => {
 										</div>
 										<div class="flex flex-col">
 											<div class="flex justify-between items-center mt-4 relative">
-												<InputLabel for="job_type" value="Job type" />
+												<InputLabel for="job_type" value="Job type"/>
 												<AddCondition :list="allList.jobTypes" groupName='job_type' @chosse-items-checkbox="handleChosseValueSearch($event, 'type')" @click-search="handleSearch"></AddCondition>
 											</div>
-											<div class="grid mt-2">
+											<div class="mt-2 flex flex-col">
 												<div class="bg-[#e3f0f1] border rounded p-[4px] my-1 relative flex justify-between items-center" v-for="jobType in searchOption.jobTypes">
 													<span>{{ jobType.name }}</span>
 													<div class="btn btn-sm btn-circle btn-ghost absolute right-0" @click="deleteItem(jobType.id, 'type')">✕</div>
@@ -213,10 +213,10 @@ const handleSearch = () => {
 								</div>
 							</div>
 						</div>
-						<div class="col-span-2">
+						<div class="col-span-3 lg:col-span-2">
 							<Link :href="`/recruits/detail/${recruit.id}`" class="card w-100 shadow-xl mb-2" v-for="recruit in model.recruits.data">
 								<figure class="px-10 pt-10">
-									<img :src="'storage/image/goku.jpg'" alt="Shoes" class="rounded-xl" />
+									<img src="https://picsum.photos/700/500" alt="Shoes" class="rounded-xl" />
 								</figure>
 								<div class="card-body items-center text-center">
 									<h2 class="card-title">{{ recruit.title }}</h2>
