@@ -49,7 +49,7 @@ const displayedList = reactive(props.list)
 <template>
 	<div class="p-[2px] max-w-[150px] text-end text-wrap border-[#f7931e] border rounded relative" @click="toggleModal">Add condition</div>
 	<dialog class="modal" :class="classes">
-		<div class="modal-box absolute w-[300px] smail-scrollbar" style="transform: translateX(-80px);">
+		<div class="modal-box absolute w-[300px] smail-scrollbar bg-white text-base-100" style="transform: translateX(-80px);">
 			<div class="flex-col justify-between">
 				<div class="flex justify-between items-center min-w-full p-2" v-for="item in displayedList">
 					<InputLabel :for="`${groupName}_${item.id}`" :value="item.name"></InputLabel>

@@ -13,7 +13,7 @@ const props = defineProps({
 
 <template>
     <Head title="Apply entry" />
-	<div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
+	<div class="bg-gray-50 text-black/50">
 		<div
 			class="relative min-h-screen flex flex-col items-center selection:bg-[#FF2D20] selection:text-white"
 		>
@@ -36,7 +36,7 @@ const props = defineProps({
                         <Link
                             v-if="$page.props.auth.user"
                             :href="route('dashboard')"
-                            class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                            class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]"
                         >
                             Dashboard
                         </Link>
@@ -44,7 +44,7 @@ const props = defineProps({
                         <template v-else>
                             <Link
                                 :href="route('login')"
-                                class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                                class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]"
                             >
                                 Log in
                             </Link>
@@ -52,7 +52,7 @@ const props = defineProps({
                             <Link
                                 v-if="canRegister"
                                 :href="route('register')"
-                                class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                                class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]"
                             >
                                 Register
                             </Link>
@@ -60,7 +60,7 @@ const props = defineProps({
                         </template>
 						<Link
 							:href="route('home')"
-							class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+							class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]"
 						>
 							Home
 						</Link>
@@ -69,7 +69,7 @@ const props = defineProps({
 
 				<main class="mt-6">
 					<div class="grid gap-6 md:grid-cols-1 place-content-between">
-						<Link :href="`/recruits/detail/${props.model.recruit.id}`" class="card w-100 bg-base-100 shadow-xl">
+						<Link :href="`/recruits/detail/${props.model.recruit.id}`" class="card w-100 shadow-xl">
 							<figure class="px-10 pt-10">
 								<img :src="'/storage/image/goku.jpg'" alt="Shoes" class="rounded-xl" />
 							</figure>
@@ -77,14 +77,14 @@ const props = defineProps({
 								<h2 class="card-title">{{ props.model.recruit.title }}</h2>
 								<p>{{ props.model.recruit.description }}</p>
 								<div class="card-actions">
-								<Link :href="`/entry/${props.model.recruit.id}`"><button class="btn bg-orange-300">Apply Now</button></Link>
+								<Link :href="`/entry/${props.model.recruit.id}`"><button class="btn bg-orange-300 border-none text-white">Apply Now</button></Link>
 								</div>
 							</div>
 						</Link>
 					</div>
 				</main>
 
-				<footer class="py-16 text-center text-sm text-black dark:text-white/70">
+				<footer class="py-16 text-center text-sm text-black">
 				</footer>
 			</div>
 		</div>

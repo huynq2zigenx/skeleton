@@ -30,7 +30,7 @@ function submit() {
 
 <template>
     <Head title="Apply entry" />
-	<div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
+	<div class="bg-gray-50 text-black/50">
 		<div
 			class="relative min-h-screen flex flex-col items-center selection:bg-[#FF2D20] selection:text-white"
 		>
@@ -53,7 +53,7 @@ function submit() {
                         <Link
                             v-if="$page.props.auth.user"
                             :href="route('dashboard')"
-                            class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                            class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]"
                         >
                             Dashboard
                         </Link>
@@ -61,7 +61,7 @@ function submit() {
                         <template v-else>
                             <Link
                                 :href="route('login')"
-                                class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                                class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]"
                             >
                                 Log in
                             </Link>
@@ -69,7 +69,7 @@ function submit() {
                             <Link
                                 v-if="canRegister"
                                 :href="route('register')"
-                                class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                                class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]"
                             >
                                 Register
                             </Link>
@@ -77,7 +77,7 @@ function submit() {
                         </template>
 						<Link
 							:href="route('home')"
-							class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+							class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]"
 						>
 							Home
 						</Link>
@@ -149,7 +149,7 @@ function submit() {
 					</form>
 				</main>
 
-				<footer class="py-16 text-center text-sm text-black dark:text-white/70">
+				<footer class="py-16 text-center text-sm text-black/70">
 				</footer>
 			</div>
 		</div>

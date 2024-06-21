@@ -105,7 +105,7 @@ const handleSearch = () => {
 
 <template>
 	<Head title="Home" />
-	<div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
+	<div class="bg-gray-50 text-black/50">
 		<div
 			class="relative min-h-screen flex flex-col items-center justify-center selection:bg-[#FF2D20] selection:text-white"
 		>
@@ -128,7 +128,7 @@ const handleSearch = () => {
 						<Link
 							v-if="$page.props.auth.user"
 							:href="route('dashboard')"
-							class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+							class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]"
 						>
 							Dashboard
 						</Link>
@@ -136,7 +136,7 @@ const handleSearch = () => {
 						<template v-else>
 							<Link
 								:href="route('login')"
-								class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+								class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]"
 							>
 								Log in
 							</Link>
@@ -144,7 +144,7 @@ const handleSearch = () => {
 							<Link
 								v-if="canRegister"
 								:href="route('register')"
-								class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+								class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]"
 							>
 								Register
 							</Link>
@@ -152,7 +152,7 @@ const handleSearch = () => {
 						</template>
 						<Link
 							:href="route('home')"
-							class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+							class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]"
 						>
 							Home
 						</Link>
@@ -162,7 +162,7 @@ const handleSearch = () => {
 				<main class="mt-6">
 					<div class="grid gap-6 md:grid-cols-3 lg:grid-cols-3 lg:gap-8 place-content-between">
 						<div class="col-span-1">
-							<div class="card w-100 bg-base-100 shadow-xl border-[#00797e] border-[1px]">
+							<div class="card w-100 shadow-xl border-[#00797e] border-[1px]">
 								<div class="card-body p-0">
 									<h2 class="w-full bg-[#00797e] p-2 rounded-tl-xl rounded-tr-xl text-white">Number of job openings</h2>
 									<div class="flex justify-center items-center p-4">
@@ -214,7 +214,7 @@ const handleSearch = () => {
 							</div>
 						</div>
 						<div class="col-span-2">
-							<Link :href="`/recruits/detail/${recruit.id}`" class="card w-100 bg-base-100 shadow-xl mb-2" v-for="recruit in model.recruits.data">
+							<Link :href="`/recruits/detail/${recruit.id}`" class="card w-100 shadow-xl mb-2" v-for="recruit in model.recruits.data">
 								<figure class="px-10 pt-10">
 									<img :src="'storage/image/goku.jpg'" alt="Shoes" class="rounded-xl" />
 								</figure>
@@ -222,7 +222,7 @@ const handleSearch = () => {
 									<h2 class="card-title">{{ recruit.title }}</h2>
 									<p>{{ recruit.description }}</p>
 									<div class="card-actions">
-									<Link :href="`/entry/${recruit.id}`"><button class="btn bg-orange-300">Apply Now</button></Link>
+									<Link :href="`/entry/${recruit.id}`"><button class="btn bg-orange-300 border-none text-white">Apply Now</button></Link>
 									</div>
 								</div>
 							</Link>
@@ -231,7 +231,7 @@ const handleSearch = () => {
 					<Pagination :total="getTotalPage()" :model="model.recruits" :queryString="searchOldOption" classes="w-full mt-6 sm:flex justify-center"></Pagination>
 				</main>
 
-				<footer class="py-16 text-center text-sm text-black dark:text-white/70">
+				<footer class="py-16 text-center text-sm text-black">
 				</footer>
 			</div>
 		</div>
