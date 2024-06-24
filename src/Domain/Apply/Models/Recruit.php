@@ -9,11 +9,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\LaravelData\WithData;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-
-class Recruit extends BaseModel
+class Recruit extends BaseModel implements HasMedia
 {
 	use WithData;
+	use InteractsWithMedia;
 
 	protected $dataClass = RecruitData::class;
 
@@ -41,7 +43,7 @@ class Recruit extends BaseModel
 		return $this->belongsTo(Prefecture::class);
 	}
 
-	public function shokushuItems() : BelongsToMany
+	public function shokushuItems(): BelongsToMany
 	{
 		return $this->belongsToMany(ShokushuItem::class, 'recruits_shokushu_items');
 	}
@@ -49,5 +51,10 @@ class Recruit extends BaseModel
 	public function newEloquentBuilder($query): RecruitBuilder
 	{
 		return new RecruitBuilder($query);
+	}
+
+	public function registerMediaCollections(): void
+	{
+		$this->addMediaCollection('product-images');
 	}
 }

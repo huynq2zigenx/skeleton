@@ -67,14 +67,13 @@ const props = defineProps({
 						</Link>
                     </nav>
                 </header>
-
 				<main class="mt-6">
 					<div class="grid gap-6 md:grid-cols-1 place-content-between">
 						<Link :href="`/recruits/detail/${props.model.recruit.id}`" class="card w-100 shadow-xl">
 							<figure class="px-10 pt-10 flex-col flex ">
 								<h2 class="card-title w-full py-5 border-b-2 text-4xl">{{ props.model.recruit.title }}</h2>
 								<h2 class="justify-start w-full pb-4">Company name: {{ props.model.recruit.company.name }}</h2>
-								<img src="https://picsum.photos/700/500" alt="Shoes" class="rounded-xl" />
+								<img :src="props.model.media" alt="Shoes" class="rounded-xl" />
 							</figure>
 							<div class="card-body items-center text-center">
 								<p>{{ props.model.recruit.description }}</p>
