@@ -28,16 +28,16 @@ const searchOldOption = getQueryParams();
 
 const allList = reactive({
 	jobTypes: model.shokushu_items.map((item) => {
-		item.checked = false; 
+		item.checked = false;
 		if(searchOldOption.shokushu_items && searchOldOption.shokushu_items.includes(item.id + "")) {
-			item.checked = true; 
+			item.checked = true;
 		}
 		return item
 	}),
 	prefectures: model.prefectures.map((item) => {
 		item.checked = false;
 		if(searchOldOption.prefectures && searchOldOption.prefectures.includes(item.id + "")) {
-			item.checked = true; 
+			item.checked = true;
 		}
  		return item
 	}),
@@ -217,7 +217,7 @@ const handleSearch = () => {
 						<div class="col-span-3 lg:col-span-2">
 							<Link :href="`/recruits/detail/${recruit.id}`" class="card w-100 shadow-xl mb-2" v-for="recruit in model.recruits.data">
 								<figure class="px-10 pt-10">
-									<img src="https://picsum.photos/700/500" alt="Shoes" class="rounded-xl" />
+									<img :src="recruit.url_image" alt="Shoes" class="rounded-xl" />
 								</figure>
 								<div class="card-body items-center text-center">
 									<h2 class="card-title">{{ recruit.title }}</h2>

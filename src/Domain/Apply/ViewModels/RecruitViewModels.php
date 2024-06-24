@@ -2,6 +2,7 @@
 
 namespace Domain\Apply\ViewModels;
 
+use Domain\Apply\DataTransferObjects\RecruitData;
 use Domain\Apply\Models\Company;
 use Domain\Apply\Models\Prefecture;
 use Domain\Apply\Models\Recruit;
@@ -20,14 +21,16 @@ class RecruitViewModels extends ViewModel
 
 	public function recruits(): Paginator
 	{
+//        dd(Recruit::with(['media'])->first());
 		$items = Recruit::with(['company', 'prefecture'])
 			->when(!empty($this->query['freeword']), fn ($query) => $query->whereTileAndDescription($this->query['freeword']))
 			->when(!empty($this->query['prefectures']), fn ($query) => $query->whereInPrefectures($this->query['prefectures']))
 			->when(!empty($this->query['shokushu_items']), fn ($query) => $query->whereBelongToShokushu($this->query['shokushu_items']))
 			->orderBy('created_at', 'desc')
 			->get()
-			->map
-			->getData();
+			->map(fn (Recruit $recruit) =>
+                RecruitData::fromModel($recruit)
+            );
 
 		$items = $items->slice(self::PER_PAGE * ($this->currentPage - 1));
 
@@ -46,7 +49,7 @@ class RecruitViewModels extends ViewModel
 			->get()
 			->count();
 
-		
+
 	}
 
 	public function prefectures(): Collection

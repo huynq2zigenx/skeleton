@@ -2,6 +2,7 @@
 
 namespace Domain\Apply\DataTransferObjects;
 
+use Carbon\Carbon;
 use Domain\Apply\Models\Company;
 use Domain\Apply\Models\Prefecture;
 use Domain\Apply\Models\Recruit;
@@ -22,21 +23,33 @@ class RecruitData extends Data
 		public readonly null|Lazy|CompanyData $company,
 		public readonly null|Lazy|PrefectureData $prefecture,
 		public readonly null|Lazy|DataCollection|ShokushuItemData $shokushuItems,
+        public readonly null|string $url_image
 	) {
 	}
 
 	public static function fromRequest(Request $request): self
-	{	
+	{
 		return self::from([
 			...$request->all(),
 			'company' => CompanyData::from(Company::findOrFail($request->company_id)),
 			'prefecture' => PrefectureData::from(Prefecture::findOrFail($request->prefecture_id)),
-			'shokushuItems' => ShokushuItemData::collect($request->shokushu_items),
+			'shokushuItems' => ShokushuItemData::collect($request->shokushu_items)
 		]);
 	}
 
 	public static function fromModel(Recruit $recruit): self
 	{
+        $media = $recruit->getMedia('product-images');
+        $url = null;
+
+        if (!empty($media)) {
+            $firstMedia = $media[0] ?? null;
+            if ($firstMedia) {
+                $url = $firstMedia->getTemporaryUrl(Carbon::now()->addMinutes(5));
+            }
+        }
+
+
 		return self::from([
 			...$recruit->toArray(),
 			'company' => Lazy::whenLoaded('company', $recruit, fn () => CompanyData::from($recruit->company)),
@@ -44,6 +57,7 @@ class RecruitData extends Data
 			'shokushuItems' => Lazy::whenLoaded('shokushuItems', $recruit, fn () =>
 				ShokushuItemData::collect($recruit->shokushuItems)
 			),
+            'url_image' => $url,
 		]);
 	}
 
