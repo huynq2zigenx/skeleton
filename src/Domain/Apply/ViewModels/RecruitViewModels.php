@@ -21,17 +21,15 @@ class RecruitViewModels extends ViewModel
 
 	public function recruits(): Paginator
 	{
-//        dd(Recruit::with(['media'])->first());
 		$items = Recruit::with(['company', 'prefecture'])
 			->when(!empty($this->query['freeword']), fn ($query) => $query->whereTileAndDescription($this->query['freeword']))
 			->when(!empty($this->query['prefectures']), fn ($query) => $query->whereInPrefectures($this->query['prefectures']))
 			->when(!empty($this->query['shokushu_items']), fn ($query) => $query->whereBelongToShokushu($this->query['shokushu_items']))
 			->orderBy('created_at', 'desc')
 			->get()
-			->map(fn (Recruit $recruit) =>
-                RecruitData::fromModel($recruit)
-            );
-
+			->map
+			->getData();
+		
 		$items = $items->slice(self::PER_PAGE * ($this->currentPage - 1));
 
 		return new Paginator($items, self::PER_PAGE, $this->currentPage, [

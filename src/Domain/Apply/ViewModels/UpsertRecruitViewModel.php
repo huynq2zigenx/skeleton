@@ -35,9 +35,4 @@ class UpsertRecruitViewModel extends ViewModel
 		return ShokushuItem::orderBy('snum')->get();
 	}
 
-	public function media()
-	{
-		$medias = $this->recruit->getMedia('product-images');
-		return $medias[0]->getFullUrl();
-	}
 }

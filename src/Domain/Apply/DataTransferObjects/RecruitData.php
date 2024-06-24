@@ -40,15 +40,7 @@ class RecruitData extends Data
 	public static function fromModel(Recruit $recruit): self
 	{
         $media = $recruit->getMedia('product-images');
-        $url = null;
-
-        if (!empty($media)) {
-            $firstMedia = $media[0] ?? null;
-            if ($firstMedia) {
-                $url = $firstMedia->getTemporaryUrl(Carbon::now()->addMinutes(5));
-            }
-        }
-
+		$url = $media[0]->getTemporaryUrl(Carbon::now()->addMinutes(5));
 
 		return self::from([
 			...$recruit->toArray(),

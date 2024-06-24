@@ -73,7 +73,7 @@ const props = defineProps({
 							<figure class="px-10 pt-10 flex-col flex ">
 								<h2 class="card-title w-full py-5 border-b-2 text-4xl">{{ props.model.recruit.title }}</h2>
 								<h2 class="justify-start w-full pb-4">Company name: {{ props.model.recruit.company.name }}</h2>
-								<img :src="props.model.media" alt="Shoes" class="rounded-xl" />
+								<img :src="props.model.recruit.url_image" alt="Shoes" class="rounded-xl" />
 							</figure>
 							<div class="card-body items-center text-center">
 								<p>{{ props.model.recruit.description }}</p>
